@@ -38,35 +38,7 @@ export class PipelineStack extends cdk.Stack {
         artifacts: {
           'base-directory': 'infra/dist',
           files: [
-            `${App.Context.ns}LambdaStack.template.json`,
-          ],
-        },
-      }),
-      environment: {
-        buildImage: codebuild.LinuxBuildImage.STANDARD_5_0,
-      },
-    });
-    const lambdaBuild = new codebuild.PipelineProject(this, 'LambdaBuild', {
-      buildSpec: codebuild.BuildSpec.fromObject({
-        version: '0.2',
-        phases: {
-          install: {
-            commands: [
-              'cd infra',
-              'npm i -g typescript npm',
-              'npm install',
-              'ls -al',
-            ],
-          },
-          build: {
-            commands: 'npm run build',
-          },
-        },
-        artifacts: {
-          'base-directory': 'infra/lib/functions',
-          files: [
-            'greet.js',
-            'node_modules/**/*',
+            `${App.Context.ns}StorageStack.template.json`,
           ],
         },
       }),
