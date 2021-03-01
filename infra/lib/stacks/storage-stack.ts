@@ -15,6 +15,7 @@ export class StorageStack extends cdk.Stack {
         name: 'SK',
         type: dynamodb.AttributeType.STRING,
       },
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
     })
   }
 }
