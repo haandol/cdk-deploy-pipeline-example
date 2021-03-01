@@ -1,8 +1,19 @@
 #!/usr/bin/env node
 import 'source-map-support/register'
 import * as cdk from '@aws-cdk/core'
-import { InfraStack } from '../lib/stacks/infra-stack'
-import { App, Stack } from '../lib/interfaces/config'
+import { StorageStack } from '../lib/stacks/storage-stack'
+import { PipelineStack } from '../lib/stacks/pipeline-stack'
+import { App } from '../lib/interfaces/config'
 
 const app = new cdk.App()
-new InfraStack(app, `${App.Context.ns}InfraStack`, Stack.Props)
+
+new StorageStack(app, `${App.Context.ns}StorageStack`)
+new PipelineStack(app, `${App.Context.ns}PipelineStack`, {
+  repo: {
+    owner: 'haandol',
+    name: 'cdk-pipeline-example',
+    branch: 'main',
+  },
+})
+
+app.synth()

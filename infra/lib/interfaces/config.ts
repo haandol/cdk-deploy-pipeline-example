@@ -1,5 +1,5 @@
 export namespace App {
-  const Namespace = 'CDKPipelineDemo'
+  const Namespace = 'CdkDeploymentDemo'
 
   enum DeployStage {
     DEV = 'Dev',
@@ -10,17 +10,5 @@ export namespace App {
   export const Context = {
     ns: Namespace,
     stage: Stage,
-  }
-}
-
-export namespace Stack {
-  const Account = '929831892372'
-  const Region = 'ap-northeast-2'
-
-  export const Props = {
-    env: {
-      account: Account,
-      region: Region,
-    }
   }
 }
