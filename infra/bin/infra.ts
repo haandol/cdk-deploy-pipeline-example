@@ -8,12 +8,14 @@ import { App } from '../lib/interfaces/config'
 const app = new cdk.App()
 
 new StorageStack(app, `${App.Context.ns}StorageStack`)
+
 new PipelineStack(app, `${App.Context.ns}PipelineStack`, {
   repo: {
     owner: 'haandol',
-    name: 'cdk-pipeline-example',
+    name: 'cdk-deploy-example',
     branch: 'main',
   },
+  templateStackName: `${App.Context.ns}StorageStack`,
 })
 
 app.synth()

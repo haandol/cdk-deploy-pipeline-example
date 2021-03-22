@@ -5,11 +5,12 @@ import * as codepipeline_actions from '@aws-cdk/aws-codepipeline-actions'
 import { App } from '../interfaces/config'
 
 export interface PipelineStackProps extends cdk.StackProps {
-  readonly repo: {
+  repo: {
     name: string
     owner: string
     branch: string
   }
+  templateStackName: string
 }
 
 export class PipelineStack extends cdk.Stack {
@@ -24,7 +25,7 @@ export class PipelineStack extends cdk.Stack {
             commands: [
               'cd infra',
               'npm i -g typescript npm',
-              'npm install',
+              'npm i',
               'ls -al',
             ]
           },
@@ -38,7 +39,7 @@ export class PipelineStack extends cdk.Stack {
         artifacts: {
           'base-directory': 'infra/dist',
           files: [
-            `${App.Context.ns}StorageStack.template.json`,
+            `${props.templateStackName}.template.json`,
           ],
         },
       }),
@@ -80,7 +81,7 @@ export class PipelineStack extends cdk.Stack {
           actions: [
             new codepipeline_actions.CloudFormationCreateUpdateStackAction({
               actionName: 'CFN_Deploy',
-              templatePath: cdkBuildOutput.atPath(`${App.Context.ns}StorageStack.template.json`),
+              templatePath: cdkBuildOutput.atPath(`${props.templateStackName}.template.json`),
               stackName: `${App.Context.ns}StorageDeployStack`,
               adminPermissions: true,
             }),

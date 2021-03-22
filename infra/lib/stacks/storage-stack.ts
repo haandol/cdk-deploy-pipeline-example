@@ -17,7 +17,9 @@ export class StorageStack extends cdk.Stack {
         type: dynamodb.AttributeType.STRING,
       },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
     })
+    /*
     table.addGlobalSecondaryIndex({
       indexName: 'GS1',
       partitionKey: {
@@ -29,5 +31,6 @@ export class StorageStack extends cdk.Stack {
         type: dynamodb.AttributeType.STRING,
       },
     })
+    */
   }
 }
