@@ -3,21 +3,15 @@ import 'source-map-support/register'
 import * as cdk from '@aws-cdk/core'
 import { StorageStack } from '../lib/stacks/storage-stack'
 import { PipelineStack } from '../lib/stacks/pipeline-stack'
-import { App } from '../lib/interfaces/config'
+import { App, Pipeline } from '../lib/interfaces/config'
 
 const app = new cdk.App()
 
 new StorageStack(app, `${App.Context.ns}StorageStack`)
 
 new PipelineStack(app, `${App.Context.ns}PipelineStack`, {
-  repo: {
-    owner: 'haandol',
-    name: 'cdk-deploy-example',
-    branch: 'main',
-  },
-  templateStackNames: [
-    `${App.Context.ns}StorageStack`
-  ],
+  repo: Pipeline.Repository,
+  templateStackNames: Pipeline.StackNames,
 })
 
 app.synth()

@@ -12,3 +12,15 @@ export namespace App {
     stage: Stage,
   }
 }
+
+export namespace Pipeline {
+  export const Repository = {
+    owner: 'haandol',
+    name: 'cdk-deploy-example',
+    branch: 'main',
+  }
+
+  export const StackNames = [
+    `${App.Context.ns}StorageStack`
+  ]
+}
