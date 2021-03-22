@@ -1,4 +1,4 @@
-# CDK Deploy Example
+# CDK Deploy Pipeline Example
 
 This repository is for deploy cdk using AWS CodePipeline
 
