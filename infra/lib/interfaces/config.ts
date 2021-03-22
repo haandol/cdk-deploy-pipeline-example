@@ -18,6 +18,7 @@ export namespace Pipeline {
     owner: 'haandol',
     name: 'cdk-deploy-example',
     branch: 'main',
+    ssmKey: 'github-token',
   }
 
   export const StackNames = [

@@ -8,6 +8,7 @@ export interface PipelineStackProps extends cdk.StackProps {
     name: string
     owner: string
     branch: string
+    ssmKey: string
   }
   templateStackNames: string[]
 }
@@ -24,7 +25,7 @@ export class PipelineStack extends cdk.Stack {
       actions: [
         new codepipeline_actions.GitHubSourceAction({
           actionName: 'GithubSource',
-          oauthToken: cdk.SecretValue.secretsManager('github-token'),
+          oauthToken: cdk.SecretValue.secretsManager(props.repo.ssmKey),
           owner: props.repo.owner,
           repo: props.repo.name,
           branch: props.repo.branch,

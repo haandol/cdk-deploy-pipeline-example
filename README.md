@@ -25,6 +25,16 @@ $ cdk bootstrap
 
 # Usage
 
+## Setup Github
+
+TODO: add github token from github web...
+
+copy your token and put it on the AWS Systems Manager Parameter Store.
+
+```bash
+aws ssm put-parameter --name github-token --value 0000000000000000000000000000000000000000 --overwrite
+```
+
 ## Setup Config
 
 open and edit **Pipeline** namespace at [**config.ts**](/infra/lib/interfaces/config.ts)
