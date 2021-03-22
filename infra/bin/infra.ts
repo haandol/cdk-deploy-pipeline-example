@@ -15,7 +15,9 @@ new PipelineStack(app, `${App.Context.ns}PipelineStack`, {
     name: 'cdk-deploy-example',
     branch: 'main',
   },
-  templateStackName: `${App.Context.ns}StorageStack`,
+  templateStackNames: [
+    `${App.Context.ns}StorageStack`
+  ],
 })
 
 app.synth()
