@@ -37,7 +37,9 @@ aws ssm put-parameter --name github-token --value 000000000000000000000000000000
 
 ## Setup Config
 
-open and edit **Pipeline** namespace at [**config.ts**](/infra/lib/interfaces/config.ts)
+Fork this repository,
+
+and open and edit **Pipeline** namespace at [**config.ts**](/infra/lib/interfaces/config.ts)
 
 names on **StackeNames** should be instantiated at [infra.ts](/infra/lib/interfaces/infra.ts)
 
@@ -62,9 +64,18 @@ export namespace Pipeline {
 
 ## Deploy pipeline
 
+Deploy **PipelineStack ONLY**. the pipeline will deploy other instantiated stacks automatically.
+
 ```bash
 $ cdk deploy CdkDeploymentDemoPipelineStack --require-approval never
 ```
+
+## Test
+
+uncomment GSI part at [**storage-stack.ts**](/infra/lib/storage-stack.ts) and 
+push the modification.
+
+then, the pipeline will be triggered and deploy StorageStack automatically.
 
 # Destroy
 
